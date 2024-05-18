@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Главная</title>
+    <link rel="stylesheet" href="../../../node_modules/bootstrap/dist/css/bootstrap.css">
+    <link rel="stylesheet" href="../../../src/styles/fontawesome.all.min.css">
+    <link rel="stylesheet" href="../../../src/styles/dashboard.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+
+<div class="wrapper d-flex р-100">
+
+    <div class="sidebar-css d-flex flex-column flex-shrink-0 px-2 py-3 bg-body-tertiary" id="sidebar"
+         style="width: 219px;">
+        <a href="javascript:void(0)"
+           class="d-flex align-items-center mx-auto pe-4 mb-1 mt-4 link-body-emphasis text-decoration-none">
+            <img class="align-items-center" src="../../../src/static/images/logo.png" alt="logo" width="98" height="40">
+        </a>
+        <hr>
+        <ul class="nav nav-pills flex-column mb-auto mt-5">
+            <li class="nav-item">
+                <a href="javascript:void(0)" class="nav-link nav-link-font14 link-body-emphasis">      <!--активная вкладка с классом active и без link-body-emphasis-->
+                    <i class="nav-link-icon-css bi pe-none fa-solid fa-house me-2"></i>
+                    <span>Главная</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="javascript:void(0)" class="nav-link nav-link-font14 link-body-emphasis">
+                    <i class="nav-link-icon-css bi pe-none fa-regular fa-money-bill-1 me-2"></i>
+                    <span>Доходы & Расходы</span>
+                </a>
+            </li>
+            <li id="leftside-navigation">
+                <ul class="nav cat-list-width d-block">
+                    <li class="sub-menu">
+                        <a href="javascript:void(0)" class="d-flex align-content-between nav-link nav-link-font14 link-body-emphasis text-decoration-none">
+                            <span class="me-3">Категории</span>
+                            <i class="nav-link-item-icon pe-none fa-solid fa-chevron-right ms-5 ps-4 align-self-center"></i></a>
+                        <ul class="p-0 collapse">
+                            <li class="nav">
+                                <a href="javascript:void(0)" class="nav-link nav-link-font14 link-body-emphasis w-100">
+                                    <span>Доходы</span></a>
+                            </li>
+                            <li class="nav">
+                                <a href="javascript:void(0)" class="nav-link nav-link-font14 link-body-emphasis w-100">
+                                    <span>Расходы</span></a>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </li>
+        </ul>
+        <ul class="p-0 m-0">
+            <li class="balance">
+                <div href="javascript:void(0)" class="nav-link nav-link-font14 link-body-emphasis">
+                    <span>Баланс: </span><a href="javascript:void(0)" class="ms-2">500$</a>
+                </div>
+            </li>
+        </ul>
+        <hr>
+        <div class="dropdown nav-link-font14">
+            <a href="javascript:void(0)"
+               class="d-flex align-items-center link-body-emphasis text-decoration-none mb-4"
+               data-bs-toggle="dropdown" aria-expanded="false">
+                <img src="../../../src/static/images/avatar-icon.png" alt="user" width="36" height="36"
+                     class="rounded-circle me-3">
+                <span class="nav-link nav-link-font14">RomanChernov</span>
+                <!--                <i class="nav-link-item-icon pe-none fa-solid fa-chevron-right ps-4 align-self-center"></i>-->
+            </a>
+            <ul class="dropdown-menu text-small shadow" data-popper-placement="top-start">
+                <li><a class="dropdown-item" href="#"><span>Выйти</span></a></li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="content-wrapper w-100" id="content-layout">
+
+        <h1 class="main-title m-0">Главная</h1>
+
+        <div class="filter-date">
+            <button type="button" class="filter-date-today btn btn-outline-secondary me-3">Сегодня</button>
+            <button type="button" class="filter-date-week btn btn-outline-secondary me-3">Неделя</button>
+            <button type="button" class="filter-date-month btn btn-outline-secondary me-3">Месяц</button>
+            <button type="button" class="filter-date-year btn btn-outline-secondary me-3">Год</button>
+            <button type="button" class="filter-date-all btn btn-outline-secondary me-3">Все</button>
+            <button type="button" class="filter-date-interval btn btn-outline-secondary me-3">Интервал</button>
+            <span class="align-self-center me-3 d-inline">c </span>
+            <span class="filter-date-from d-inline align-self-center">
+                <span class="form-group d-inline">
+                    <input type="date" class="form-control d-inline text-secondary" id="inputDateFrom">
+                </span>
+            </span>
+            <span class="align-self-center mx-3 d-inline"> по </span>
+            <span class="filter-date-to d-inline align-self-center">
+                <span class="form-group d-inline w-25">
+                    <input type="date" class="form-control d-inline text-secondary" id="inputDateTo">
+                </span>
+            </span>
+        </div>
+
+        <div class="main-graphs d-flex justify-content-center align-items-center">
+            <div class="main-graphs-item d-inline">
+                <div class="graph">
+                    <canvas id="myChart-1" width="445" height="500"></canvas>
+                </div>
+            </div>
+            <div class="main-graphs-line d-block"></div>
+            <div class="main-graphs-item d-inline">
+                <div class="graph">
+                    <canvas id="myChart-2" width="445" height="500"></canvas>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+</div>
+
+<script src="../../../node_modules/bootstrap/dist/js/bootstrap.min.js"
+        integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy"
+        crossorigin="anonymous"></script>
+<script src="../../../node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+        crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script src="../../../src/styles/jquery-3.7.1.min.js"></script>
+<script src="../../components/dashboard.js"></script>
+</body>
+</html>

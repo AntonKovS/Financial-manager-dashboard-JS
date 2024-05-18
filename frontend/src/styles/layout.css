@@ -1,0 +1,60 @@
+@font-face {
+    font-family: Roboto;
+    src: url("../static/fonts/Roboto.ttf");
+}
+
+@font-face {
+    font-family: Roboto-medium;
+    src: url("../static/fonts/Robotomedium.ttf");
+    font-weight: bold;
+}
+
+body {
+    font-family: Roboto, sans-serif;
+    color: #052C65;
+}
+
+.sidebar-css {
+    width: 219px;
+    height: 100vh;
+    border-right: 2px solid #dee2e6;
+}
+
+/*.nav-link-font14 {*/
+/*    color: #052C65;*/
+/*}*/
+
+.nav-link-font14 span {
+    color: #052C65;
+    font-size: 14px;
+}
+
+.nav-link-icon-css {
+    width: 20px;
+    font-size: 16px;
+}
+
+.sub-menu > ul > li:hover,
+.sub-menu > a:hover,
+.nav-pills > li > a:hover {
+    background-color: #0D6EFD;
+    border-radius: 0.375rem;
+    color: white;
+}
+
+.sub-menu > ul > li:hover span,
+.sub-menu > a:hover span,
+.nav-pills > li > a:hover span {
+    color: white;
+}
+
+.active span {
+    color: white;
+}
+
+.balance {
+    font-family: Roboto-medium, sans-serif;
+    list-style: none;
+    padding: 0;
+    text-align: start;
+}

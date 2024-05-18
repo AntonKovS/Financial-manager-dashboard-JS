@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Layout-draft</title>
+    <link rel="canonical" href="https://getbootstrap.com/docs/5.3/examples/sidebars/">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@docsearch/css@3">
+
+    <link rel="stylesheet" href="../../node_modules/bootstrap/dist/css/bootstrap.css">
+    <link rel="stylesheet" href="../../src/styles/fontawesome.all.min.css">
+    <link href="../../node_modules/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+
+    <link rel="stylesheet" href="../../src/styles/layout-draft.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+<!--    <link href="../../node_modules/bootstrap/dist/js/bootstrap.min.js" rel="stylesheet"-->
+<!--          integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"-->
+<!--          crossorigin="anonymous">-->
+</head>
+<body>
+
+<div class="d-flex flex-column flex-shrink-0 p-3 bg-body-tertiary" style="width: 230px;">
+    <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto link-body-emphasis text-decoration-none">
+        <svg class="bi pe-none me-2" width="40" height="32">
+            <use xlink:href="#bootstrap"></use>
+        </svg>
+        <img class="mb-5" src="../../src/static/images/logo.png" alt="logo" width="98" height="40">
+    </a>
+    <hr>
+    <ul class="nav nav-pills flex-column mb-auto">
+        <li class="nav-item">
+            <a href="javascript:void(0)" class="nav-link nav-link-item active" aria-current="page">
+                <i class="nav-link-item-icon bi pe-none fa-solid fa-house me-2"></i>
+                Главная
+            </a>
+        </li>
+        <li>
+            <a href="javascript:void(0)" class="nav-link nav-link-item link-body-emphasis">
+                <i class="nav-link-item-icon bi pe-none fa-regular fa-money-bill-1 me-2"></i>
+                Доходы & Расходы
+            </a>
+        </li>
+        <li>
+            <a href="javascript:void(0)" class="nav-link nav-link-item link-body-emphasis active">
+                Категории
+                <i class="nav-link-item-icon bi pe-none fa-solid fa-chevron-right ms-5 ps-4"></i>
+            </a>
+            <a href="javascript:void(0)" class="nav-link nav-link-item link-body-emphasis active">
+                Доходы
+            </a>
+            <a href="javascript:void(0)" class="nav-link nav-link-item link-body-emphasis">
+                Расходы
+            </a>
+        </li>
+
+        <li id="leftside-navigation">
+            <ul class="nav">
+                <li class="sub-menu">
+                    <a href="javascript:void(0)" class="active d-flex align-content-between nav-link link-body-emphasis text-decoration-none">
+                        <span>Категории</span>
+                        <i class="nav-link-item-icon bi pe-none fa-solid fa-chevron-right ms-5 ps-4"></i></a>
+                    <ul class="p-0">
+                        <li class="nav">
+                            <a href="ui-alerts-notifications.html" class="nav-link nav-link-font14 link-body-emphasis w-100">Доходы</a>
+                        </li>
+                        <li class="nav">
+                            <a href="ui-panels.html" class="active nav-link nav-link-font14 link-body-emphasis w-100">Расходы</a>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+        </li>
+
+
+        <!--        Другие виды менюшки для категории:-->
+
+        <!--            <li class="nav-item dropdown">-->
+        <!--                <a class="nav-link nav-link-font14 d-flex align-items-center link-body-emphasis text-decoration-none dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">-->
+        <!--                    <p class="m-0">Категории</p>-->
+        <!--                    <i class="nav-link-icon-css bi pe-none fa-solid fa-chevron-right ms-5 ps-4"></i>-->
+        <!--                </a>-->
+        <!--                <ul class="nav-link-font14 dropdown-menu w-100 shadow" aria-labelledby="dropdownMenuButton1">-->
+        <!--                    <li><a class="dropdown-item" href="#">Доходы</a></li>-->
+        <!--                    <li><a class="dropdown-item" href="#">Расходы</a></li>-->
+        <!--                </ul>-->
+        <!--            </li>-->
+
+
+        <!--            <li class="nav-item">-->
+        <!--                <a href="javascript:void(0)"-->
+        <!--                   class="nav-link nav-link-font14 d-flex align-items-center link-body-emphasis text-decoration-none dropdown-toggle"-->
+        <!--                   data-bs-toggle="dropdown" aria-expanded="false">-->
+        <!--                    <p class="m-0">Категории</p>-->
+        <!--                    <i class="nav-link-icon-css bi pe-none fa-solid fa-chevron-right ms-5 ps-4"></i>-->
+        <!--                </a>-->
+        <!--                <ul class="nav-link-font14 dropdown-menu text-small shadow">-->
+        <!--                    <li><a class="dropdown-item  w-100" href="#">Доходы</a></li>-->
+        <!--                    <li><a class="dropdown-item  w-100" href="#">Расходы</a></li>-->
+        <!--                </ul>-->
+        <!--            </li>-->
+
+        <!--        <li>-->
+        <!--            <a href="javascript:void(0)" class="nav-link nav-link-font14 link-body-emphasis active">-->
+        <!--                Категории-->
+        <!--                <i class="nav-link-icon-css bi pe-none fa-solid fa-chevron-right ms-5 ps-4"></i>-->
+        <!--            </a>-->
+        <!--            <a href="javascript:void(0)" class="nav-link nav-link-font14 link-body-emphasis active">-->
+        <!--                Доходы-->
+        <!--            </a>-->
+        <!--            <a href="javascript:void(0)" class="nav-link nav-link-font14 link-body-emphasis">-->
+        <!--                Расходы-->
+        <!--            </a>-->
+        <!--        </li>-->
+
+        <!--        <ul class="dropdown-menu position-static d-grid gap-1 p-2 rounded-3 mx-0 shadow w-220px" data-bs-theme="light">-->
+        <!--            <li><a class="dropdown-item rounded-2 active" href="#">Action</a></li>-->
+        <!--            <li><a class="dropdown-item rounded-2" href="#">Another action</a></li>-->
+        <!--            <li><a class="dropdown-item rounded-2" href="#">Something else here</a></li>-->
+        <!--            <li><hr class="dropdown-divider"></li>-->
+        <!--            <li><a class="dropdown-item rounded-2" href="#">Separated link</a></li>-->
+        <!--        </ul>-->
+
+        <!--                <ul class="dropdown-menu position-static d-grid p-0 w-220px" data-bs-theme="light">-->
+        <!--                    <li><a class="dropdown-item rounded-2 active" href="#">Категории</a></li>-->
+        <!--                    <li><a class="dropdown-item rounded-2" href="#">Доходы</a></li>-->
+        <!--                    <li><a class="dropdown-item rounded-2" href="#">Расходы</a></li>-->
+        <!--                </ul>-->
+    </ul>
+    <hr>
+    <div class="dropdown">
+        <a href="javascript:void(0)"
+           class="d-flex align-items-center link-body-emphasis text-decoration-none dropdown-toggle"
+           data-bs-toggle="dropdown" aria-expanded="false">
+            <img src="https://github.com/mdo.png" alt="" width="32" height="32" class="rounded-circle me-2">
+            <strong>mdo</strong>
+        </a>
+        <ul class="dropdown-menu text-small shadow">
+            <li><a class="dropdown-item" href="#">New project...</a></li>
+            <li><a class="dropdown-item" href="#">Settings</a></li>
+            <li><a class="dropdown-item" href="#">Profile</a></li>
+            <li>
+                <hr class="dropdown-divider">
+            </li>
+            <li><a class="dropdown-item" href="#">Sign out</a></li>
+        </ul>
+    </div>
+</div>
+
+
+
+
+
+
+
+<script src="../../node_modules/@popperjs/core/dist/umd/popper.min.js" defer></script>
+<script src="../../node_modules/bootstrap/dist/js/bootstrap.min.js" defer></script>
+<script src="../../node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+        crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js" integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy" crossorigin="anonymous"></script>
+<script src="../../src/styles/jquery-3.7.1.min.js"></script>
+<script src="../../src/components/layout.js"></script>
+</body>
+</html>
