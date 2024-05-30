@@ -1,14 +1,12 @@
 import {Layout} from "./components/layout.js";
+import {Login} from "./components/login.js";
+import {Auth} from "./services/auth.js";
 
 export class Router {
     constructor() {
         this.contentElement = document.getElementById('content');
-        this.contentLayoutElement = document.getElementById('content-layout');
         this.titleElement = document.getElementById('page-title');
-        this.stylesUtilsBefore = document.getElementById('styles-utils-before');
         this.styleElement = document.getElementById('style-element');
-        this.scriptElement = document.getElementById('script-element');
-
 
         this.routes = [
             {
@@ -18,17 +16,16 @@ export class Router {
                 useLayout: 'templates/layout.html',
                 styles: 'dashboard.css',
                 scripts: ['layout.js'],
-                // scripts: 'layout.js',
-                // load: () => {
-                //     new Layout();    //this.openNewRoute.bind(this), определяем какой файл js использовать и сделать экземпляр класса из него
-                // },
             },
             {
-                route: '#/sign-up',
+                route: '#/signup',
                 title: 'Создайте аккаунт',
-                template: 'templates/pages/auth/sign-up.html',
+                template: 'templates/pages/auth/signup.html',
                 useLayout: false,
                 styles: 'auth.css',
+                load: () => {
+                    new Login('signup');
+                },
             },
             {
                 route: '#/login',
@@ -36,6 +33,9 @@ export class Router {
                 template: 'templates/pages/auth/login.html',
                 useLayout: false,
                 styles: 'auth.css',
+                load: () => {
+                    new Login('login');
+                },
             },
             {
                 route: '#/incomes&spendings-view',
@@ -99,8 +99,8 @@ export class Router {
                 template: 'templates/pages/incomes-spendings/spendings-edit.html',
                 useLayout: 'templates/layout.html',
                 styles: 'incomes-spendings.css',
-            },
-        ];
+            }];
+
         this.initEvents();
     }
 
@@ -113,40 +113,46 @@ export class Router {
         const urlRoute = window.location.hash.split('?')[0];
         const newRoute = this.routes.find(item => item.route === urlRoute);
 
-        if (newRoute) {
-            if (urlRoute === '#/logout') {
-                // await Auth.logout();
-                window.location.href = '#/';
-                return;
-            }
+        if (urlRoute === '#/logout') {
+            await Auth.logout();
+            window.location.href = '#/login';
+            return;
+        }
 
+        const accessToken = localStorage.getItem(Auth.accessTokenKey);
+        const userInfo = Auth.getUserInfo();
+        if ((!userInfo || !accessToken) && urlRoute !== '#/signup') {
+            await Auth.removeTokensAndUserInfo();
+            if (urlRoute !== '#/login') {
+            window.location.href = '#/login';
+            return;
+            }
+        }
+
+        if (newRoute) {
             if (newRoute.template) {
                 let contentBlock = this.contentElement;
                 if (newRoute.useLayout) {
                     this.contentElement.innerHTML = await fetch(newRoute.useLayout).then(response => response.text());
                     contentBlock = document.getElementById('content-layout');
-                    //
-                    //     this.profileNameElement = document.getElementById('profile-name');
-                    //     if (!this.userName) {
-                    //         let userInfo = AuthUtils.getAuthInfo(AuthUtils.userInfoTokenKey);
-                    //         if (userInfo) {
-                    //             userInfo = JSON.parse(userInfo);
-                    //             if (userInfo.name) {
-                    //                 this.userName = userInfo.name;
-                    //             }
-                    //         }
-                    //     }
-                    //     this.profileNameElement.innerText = this.userName;
                 }
                 contentBlock.innerHTML = await fetch(newRoute.template).then(response => response.text());
                 if (newRoute.title) {
                     this.titleElement.innerText = newRoute.title + ' | SaveMoney';
                 }
-                if (newRoute.useLayout) {
-                    new Layout(newRoute);
+                if (userInfo && userInfo.fullName) {
+                    document.getElementById('profile-name').innerText = userInfo.fullName;
                 }
             }
             this.styleElement.setAttribute('href', ('css/' + newRoute.styles));
+            if (newRoute.useLayout) {
+                new Layout(newRoute);
+            }
+
+            if (newRoute.load && typeof newRoute.load === 'function') {
+                newRoute.load();
+            }
+
         } else {
             window.location.href = '#/';
             // return;

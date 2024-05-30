@@ -56,7 +56,6 @@ export class Layout {
 
     showGraphs() {
         if (this.route.template.includes('dashboard')) {
-            console.log(this.route);
             const ctx1 = document.getElementById('myChart-1');
             const ctx2 = document.getElementById('myChart-2');
             const config = {

@@ -167,6 +167,29 @@ ul.nav-pills {
     text-align: start;
 }
 
+.dropdown-menu {
+    width: 170px;
+    height: 40px;
+    background-color: #e1e1ef;
+    opacity: 0.9;
+}
+
+.dropdown-item {
+    font-family: Roboto-medium, sans-serif;
+    text-align: center;
+    align-content: center;
+    height: 40px;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+ul.dropdown-menu:hover, ul.dropdown-menu:hover .dropdown-item, .dropdown-item:hover {
+    background-color: #0D6EFD;
+    opacity: 0.9;
+    color: white;
+    border-radius: 5px;
+}
+
 #content-layout {
     padding: 0 80px 0 80px;
     max-width: 1400px;
