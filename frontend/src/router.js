@@ -1,6 +1,16 @@
 import {Layout} from "./components/layout.js";
 import {Login} from "./components/login.js";
 import {Auth} from "./services/auth.js";
+import {Incomes} from "./components/incomes.js";
+import {Expenses} from "./components/expenses.js";
+import {IncomesCreate} from "./components/incomes-create.js";
+import {ExpensesCreate} from "./components/expenses-create.js";
+import {IncomeEdit} from "./components/income-edit.js";
+import {ExpensesEdit} from "./components/expenses-edit.js";
+import {OperationsView} from "./components/operations-view.js";
+import {OperationsCreate} from "./components/operations-create.js";
+import {OperationsEdit} from "./components/operations-edit.js";
+import {Dashboard} from "./components/dashboard.js";
 
 export class Router {
     constructor() {
@@ -15,7 +25,9 @@ export class Router {
                 template: 'templates/pages/dashboard.html',
                 useLayout: 'templates/layout.html',
                 styles: 'dashboard.css',
-                scripts: ['layout.js'],
+                load: () => {
+                    new Dashboard();
+                },
             },
             {
                 route: '#/signup',
@@ -38,67 +50,94 @@ export class Router {
                 },
             },
             {
-                route: '#/incomes&spendings-view',
+                route: '#/incomes&expenses-view',
                 title: 'Доходы и расходы',
-                template: 'templates/pages/incomes-spendings/incomes&spendings-view.html',
+                template: 'templates/pages/incomes-expenses/incomes&expenses-view.html',
                 useLayout: 'templates/layout.html',
-                styles: 'incomes-spendings.css',
+                styles: 'incomes-expenses.css',
+                load: () => {
+                    new OperationsView();
+                },
             },
             {
-                route: '#/incomes&spendings-create',
+                route: '#/incomes&expenses-create',
                 title: 'Создание дохода/расхода',
-                template: 'templates/pages/incomes-spendings/incomes&spendings-create.html',
+                template: 'templates/pages/incomes-expenses/incomes&expenses-create.html',
                 useLayout: 'templates/layout.html',
-                styles: 'incomes-spendings.css',
+                styles: 'incomes-expenses.css',
+                load: () => {
+                    new OperationsCreate();
+                },
             },
             {
-                route: '#/incomes&spendings-edit',
+                route: '#/incomes&expenses-edit',
                 title: 'Редактирование дохода/расхода',
-                template: 'templates/pages/incomes-spendings/incomes&spendings-edit.html',
+                template: 'templates/pages/incomes-expenses/incomes&expenses-edit.html',
                 useLayout: 'templates/layout.html',
-                styles: 'incomes-spendings.css',
+                styles: 'incomes-expenses.css',
+                load: () => {
+                    new OperationsEdit();
+                },
             },
             {
                 route: '#/incomes-view',
                 title: 'Доходы',
-                template: 'templates/pages/incomes-spendings/incomes-view.html',
+                template: 'templates/pages/incomes-expenses/incomes-view.html',
                 useLayout: 'templates/layout.html',
-                styles: 'incomes-spendings.css',
+                styles: 'incomes-expenses.css',
+                load: () => {
+                    new Incomes();
+                },
             },
             {
                 route: '#/incomes-create',
                 title: 'Создание категории доходов',
-                template: 'templates/pages/incomes-spendings/incomes-create.html',
+                template: 'templates/pages/incomes-expenses/incomes-create.html',
                 useLayout: 'templates/layout.html',
-                styles: 'incomes-spendings.css',
+                styles: 'incomes-expenses.css',
+                load: () => {
+                    new IncomesCreate();
+                },
             },
             {
                 route: '#/incomes-edit',
                 title: 'Редактирование категории доходов',
-                template: 'templates/pages/incomes-spendings/incomes-edit.html',
+                template: 'templates/pages/incomes-expenses/incomes-edit.html',
                 useLayout: 'templates/layout.html',
-                styles: 'incomes-spendings.css',
+                styles: 'incomes-expenses.css',
+                load: () => {
+                    new IncomeEdit();
+                },
             },
             {
-                route: '#/spendings-view',
+                route: '#/expenses-view',
                 title: 'Расходы',
-                template: 'templates/pages/incomes-spendings/spendings-view.html',
+                template: 'templates/pages/incomes-expenses/expenses-view.html',
                 useLayout: 'templates/layout.html',
-                styles: 'incomes-spendings.css',
+                styles: 'incomes-expenses.css',
+                load: () => {
+                    new Expenses();
+                },
             },
             {
-                route: '#/spendings-create',
+                route: '#/expenses-create',
                 title: 'Создание категории расходов',
-                template: 'templates/pages/incomes-spendings/spendings-create.html',
+                template: 'templates/pages/incomes-expenses/expenses-create.html',
                 useLayout: 'templates/layout.html',
-                styles: 'incomes-spendings.css',
+                styles: 'incomes-expenses.css',
+                load: () => {
+                    new ExpensesCreate();
+                },
             },
             {
-                route: '#/spendings-edit',
+                route: '#/expenses-edit',
                 title: 'Редактирование категории расходов',
-                template: 'templates/pages/incomes-spendings/spendings-edit.html',
+                template: 'templates/pages/incomes-expenses/expenses-edit.html',
                 useLayout: 'templates/layout.html',
-                styles: 'incomes-spendings.css',
+                styles: 'incomes-expenses.css',
+                load: () => {
+                    new ExpensesEdit();
+                },
             }];
 
         this.initEvents();
@@ -124,8 +163,8 @@ export class Router {
         if ((!userInfo || !accessToken) && urlRoute !== '#/signup') {
             await Auth.removeTokensAndUserInfo();
             if (urlRoute !== '#/login') {
-            window.location.href = '#/login';
-            return;
+                window.location.href = '#/login';
+                return;
             }
         }
 

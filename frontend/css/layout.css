@@ -113,6 +113,17 @@
 
 /* Ниже свои css: */
 
+.width-element {
+    width: 200px;
+    /*box-sizing: border-box;*/
+    overflow: hidden;
+}
+
+/*.cat-list-width li a i {*/
+/*    padding-left: 71px;*/
+/*}*/
+
+
 ul.nav-pills {
     margin-top: 44px;
 }
@@ -150,7 +161,7 @@ ul.nav-pills {
 }
 
 .nav-link-item-icon {
-    margin-left: 48px;
+    /*margin-left: 48px;*/
     width: 30px;
     height: 20px;
     align-content: center;
@@ -165,6 +176,39 @@ ul.nav-pills {
     list-style: none;
     padding: 0;
     text-align: start;
+}
+
+.balance ul {
+    opacity: 1;
+}
+
+.balance:hover {
+    text-decoration: underline;
+}
+
+.balance-popup-group {
+    background-color: #e1e1ef;
+    border: 1px solid #e1e1ef;
+    text-align: center;
+    padding: 0;
+    margin: 0;
+    gap: 0;
+}
+
+.balance-popup-group input {
+    background-color: white;
+height: 41px;
+}
+
+.balance-popup-group label {
+    background-color: #c7c7c7;
+}
+
+.balance-popup-group label:hover {
+    background-color: #0D6EFD;
+    /*opacity: 0.7;*/
+    border-radius: 0.375rem;
+    color: white;
 }
 
 .dropdown-menu {
@@ -183,7 +227,7 @@ ul.nav-pills {
     box-sizing: border-box;
 }
 
-ul.dropdown-menu:hover, ul.dropdown-menu:hover .dropdown-item, .dropdown-item:hover {
+ul.popup-user-logout:hover, ul.popup-user-logout:hover .dropdown-item, .popup-user-logout .dropdown-item:hover {
     background-color: #0D6EFD;
     opacity: 0.9;
     color: white;
@@ -224,6 +268,9 @@ ul.dropdown-menu:hover, ul.dropdown-menu:hover .dropdown-item, .dropdown-item:ho
     .sidebar-css {
         max-width: 200px;
         padding-top: 0;
+    }
+    .width-element {
+        width: 180px;
     }
     .nav-link-icon-css {
         width: 16px;

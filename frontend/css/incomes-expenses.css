@@ -44,8 +44,23 @@
     margin-bottom: 10px;
 }
 
-.card-body input {
+.card-body input, .card-body select {
     max-width: 397px;
+    margin-bottom: 10px;
+}
+
+.card-body select {
+    cursor: pointer;
+}
+
+#create-select-category, #operation-edit-category {
+    color: grey;
+}
+#create-select-category option, #operation-edit-category option {
+    color: black;
+}
+#create-select-category option:first-child, #operation-edit-category option:first-child {
+    color: grey;
 }
 
 .card-body button:nth-child(2) {
@@ -66,7 +81,7 @@
 }
 
 .filter-date-from input, .filter-date-to input {
-    width: 100px;
+    width: 120px;
 }
 
 .filter-date-from input:focus, .filter-date-to input:focus {
@@ -85,8 +100,9 @@
     margin-right: 16px;
 }
 
-#inputDateFrom, #inputDateTo {
+#input-date-from, #input-date-to {
     font-size: 12px;
+    padding-left: 5px;
 }
 
 .table-action-list {
@@ -94,16 +110,22 @@
     padding: 0 20px 50px 60px;
 }
 
-.incomes-popup {
-    display: none;
+#incomes-popup, #expenses-popup, #operation-popup {
+    display:none;
+    position:fixed;
+    width:100%;
+    height:100%;
+    background:rgba(0,0,0,.6);
+    z-index: 1200;
+    top: 0;
+    left: 0;
 }
 
-.spendings-popup {
-    display: none;
-}
-
-.cards-css .card-body input {
-    margin-bottom: 10px;
+#incomes-popup-window, #expenses-popup-window, #operation-popup-window {
+    max-width:530px;
+    font-size: 25px;
+    align-content:center;
+    z-index: 1200;
 }
 
 .cards-css .card-body .btn {
@@ -113,6 +135,12 @@
 .table-icon-delete, .table-icon-edit {
     color: black;
 }
+
+.table-icon-delete.parent, .table-icon-edit.parent {
+    text-wrap: none;
+}
+
+
 
 /* 1230 - 1439 */
 @media screen and (max-width: 1439px) {
@@ -168,7 +196,7 @@
         padding: 10px;
         border: 1px solid #d0d0d0;
         border-radius: 5px;
-        width: 240px;
+        width: 260px;
         margin: 10px 0 20px 0;
         font-size: 12px;
         display: flex;

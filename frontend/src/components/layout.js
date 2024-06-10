@@ -1,11 +1,20 @@
+import {CustomHttp} from "../services/custom-http.js";
+import config from "../../config/config.js";
+
 export class Layout {
     constructor(newRoute) {
         this.route = newRoute;
         this.labelForChange = document.getElementById('lable-for-change');
+        this.balance = document.getElementById('balance');
+        this.balanceAmount = document.getElementById('balance-amount');
+        this.balanceUpdateButton = document.getElementById('balance-update-button');
 
         this.showSideBar();
         this.activateSideBar();
-        this.showGraphs();
+        this.showBalance().then();
+
+        this.balance.parentElement.addEventListener("click", this.balanceMenu.bind(this));
+        this.balanceUpdateButton.addEventListener("click", this.updateBalance.bind(this));
     }
 
     showSideBar() {
@@ -51,59 +60,58 @@ export class Layout {
                     this.labelForChange.classList.remove('link-body-emphasis');
                 }
             }
+            if (this.route.route === '#/incomes-create' || this.route.route === '#/expenses-create') {
+                this.labelForChange.firstElementChild.innerText = 'Создание';
+                this.labelForChange.classList.add('active');
+                this.labelForChange.classList.remove('link-body-emphasis');
+            }
+            if (this.route.route === '#/incomes-edit' || this.route.route === '#/expenses-edit') {
+                this.labelForChange.firstElementChild.innerText = 'Редактирование';
+                this.labelForChange.classList.add('active');
+                this.labelForChange.classList.remove('link-body-emphasis');
+            }
         });
     };
 
-    showGraphs() {
-        if (this.route.template.includes('dashboard')) {
-            const ctx1 = document.getElementById('myChart-1');
-            const ctx2 = document.getElementById('myChart-2');
-            const config = {
-                type: 'pie',
-                data: {
-                    labels: [
-                        'Red',
-                        'Orange',
-                        'Yellow',
-                        'Green',
-                        'Blue'
-                    ],
-                    datasets: [{
-                        label: 'Dataset 1',
-                        data: [20, 50, 5, 15, 10],
-                        backgroundColor: [
-                            'rgb(255, 99, 132)',
-                            'rgb(255, 205, 86)',
-                            'rgb(246,246,50)',
-                            'rgb(100,217,53)',
-                            'rgb(54, 162, 235)',
-                        ],
-                        hoverOffset: 4
-                    }]
-                },
-                options: {
-                    scales: {},
-                    responsive: true,
-                    plugins: {
-                        // legend: {
-                        //     position: 'top',
-                        // },
-                        // title: {
-                        //     display: true,
-                        //     text: 'Доходы'
-                        // }
-                    },
-                    animation: {animateScale: true},
-                    // rotation: 90,
-                    aspectRatio: 1,
-                    // maintainAspectRatio: false,
-                    // radius: 100,
-                    borderAlign: 'center'
-
-                }
-            };
-            new Chart(ctx1, config);
-            new Chart(ctx2, config);
+    async showBalance() {
+        try {
+            const result = await CustomHttp.request(config.host + '/balance');
+            if (!result || result.error) {
+                throw new Error(result.message);
+            }
+            this.balance.innerText = result.balance + " $";
+        } catch (error) {
+            return console.log(error);
         }
-    };
+    }
+
+    async balanceMenu() {
+        try {
+            const result = await CustomHttp.request(config.host + '/balance');
+            if (!result || result.error) {
+                throw new Error(result.message);
+            }
+            this.balance.innerText = result.balance + " $";
+            this.balanceAmount.value = result.balance;
+        } catch (error) {
+            return console.log(error);
+        }
+    }
+
+    async updateBalance() {
+        try {
+            if (this.balanceAmount.value === this.balance.textContent.split(' ')[0] || !this.balanceAmount.value.match(/^(\d){1,13}$/g)) {
+                return;
+            }
+            const result = await CustomHttp.request(config.host + '/balance', 'PUT', {"newBalance": this.balanceAmount.value});
+            if (!result || result.error) {
+                throw new Error(result.message);
+            }
+            await this.showBalance();
+        } catch (error) {
+            return console.log(error);
+        }
+    }
+
+
 }
