@@ -18,36 +18,40 @@ export class Layout {
     }
 
     showSideBar() {
-        $(document).ready(function () {
-            const sidebarButton = $(".sidebar-button");
+        let ready = (callback) => {
+            if (document.readyState !== "loading") callback();
+            else document.addEventListener("DOMContentLoaded", callback);
+        }
+
+        ready(() => {
+            const sidebarButton = document.querySelector('.sidebar-button');
 
             function toggleSidebar() {
-                sidebarButton.toggleClass("active");
-                $(".sidebar-main").toggleClass("move-to-left-bar");
-                $(".sidebar-css").toggleClass("move-to-left-sidebar");
+                sidebarButton.classList.toggle("active");
+                document.querySelector(".sidebar-main").classList.toggle("move-to-left-bar");
+                document.querySelector(".sidebar-css").classList.toggle("move-to-left-sidebar");
             }
 
-            sidebarButton.on("click tap", function () {
-                toggleSidebar();
-            });
-
-            $(document).keyup(function (e) {
+            sidebarButton.addEventListener("click", toggleSidebar);
+            document.addEventListener("keyup", (e) => {
                 if (e.keyCode === 27) {
                     toggleSidebar();
                 }
             });
-
         });
     };
 
     activateSideBar() {
         const that = this;
-        $("#leftside-navigation .sub-menu > a").click(function (e) {
+
+        function toggleSidebar(e) {
             $("#leftside-navigation ul ul").slideUp();
             $(this).next().is(":visible") || $(this).next().slideDown();
+            $("i.nav-link-item-icon").toggleClass("fa-chevron-right fa-chevron-down");
             e.stopPropagation();
-            $("i.nav-link-item-icon").toggleClass( "fa-chevron-right fa-chevron-down" );
-        });
+        }
+
+        document.querySelector("#leftside-navigation .sub-menu > a").addEventListener("click", toggleSidebar);
 
         document.querySelectorAll('.sidebar-css .nav-link').forEach(item => {
             const href = item.getAttribute('href');

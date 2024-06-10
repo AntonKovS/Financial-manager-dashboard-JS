@@ -12,21 +12,24 @@ export class Dashboard {
 
         // this.getCategoriesIncome().then(this.getCategoriesExpense()).then(this.showGraphsDefault()).then(this.buttonsListener(this.buttonFilter));
 
-        this.getCategories().then();
+        // this.getCategories().then();
+        this.getCategoriesIncome().then();
+        this.getCategoriesExpense().then();
 
         this.showGraphsDefault().then();
 
         this.buttonsListener(this.buttonFilter);
     }
 
-    async getCategories() {
-        this.getCategoriesIncome().then();
-        this.getCategoriesExpense().then();
-    };
+    // async getCategories() {
+    //     this.getCategoriesIncome().then();
+    //     this.getCategoriesExpense().then();
+    // };
 
     async getCategoriesIncome() {
         try {
             this.incomesCat = await CustomHttp.request(config.host + '/categories/income');
+            console.log(this.incomesCat);
         } catch (error) {
             return console.log(error);
         }
@@ -35,6 +38,7 @@ export class Dashboard {
     async getCategoriesExpense() {
         try {
             this.expenseCat = await CustomHttp.request(config.host + '/categories/expense');
+            console.log(this.expenseCat);
         } catch (error) {
             return console.log(error);
         }
@@ -180,9 +184,6 @@ export class Dashboard {
             });
         });
 
-        console.log(incomesCatSum);
-        console.log(expenseCatSum);
-
         for (let i = 0; i < Object.keys(incomesCatSum).length; i++) {
             if (Object.values(incomesCatSum)[i] !== 0) {
                 config1.data.labels.push(Object.keys(incomesCatSum)[i]);
@@ -195,6 +196,9 @@ export class Dashboard {
                 config2.data.datasets[0].data.push(Number(Object.values(expenseCatSum)[i]));
             }
         }
+
+        console.log(incomesCatSum);
+        console.log(expenseCatSum);
 
         this.chart1 = new Chart(this.ctx1, config1);
         this.chart2 = new Chart(this.ctx2, config2);
