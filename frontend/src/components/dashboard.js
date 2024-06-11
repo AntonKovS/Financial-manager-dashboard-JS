@@ -12,7 +12,6 @@ export class Dashboard {
 
         // this.getCategoriesIncome().then(this.getCategoriesExpense()).then(this.showGraphsDefault()).then(this.buttonsListener(this.buttonFilter));
 
-        // this.getCategories().then();
         this.getCategoriesIncome().then();
         this.getCategoriesExpense().then();
 
@@ -20,11 +19,6 @@ export class Dashboard {
 
         this.buttonsListener(this.buttonFilter);
     }
-
-    // async getCategories() {
-    //     this.getCategoriesIncome().then();
-    //     this.getCategoriesExpense().then();
-    // };
 
     async getCategoriesIncome() {
         try {

@@ -36,3 +36,11 @@ form .input-group input {
 .input-group-text > i {
   width: 14px;
 }
+
+/* 320 - 469 */
+@media screen and (max-width: 469px) {
+  .auth-main-page form {
+    width: 300px;
+    padding: 15px;
+  }
+}
