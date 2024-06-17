@@ -41,17 +41,71 @@ export class Layout {
         });
     };
 
+    // activateSideBar() {
+    //     const that = this;
+    //
+    //     function toggleSidebar(e) {
+    //         $("#leftside-navigation ul ul").slideUp();
+    //         $(this).next().is(":visible") || $(this).next().slideDown();
+    //         $("i.nav-link-item-icon").toggleClass("fa-chevron-right fa-chevron-down");
+    //         e.stopPropagation();
+    //     }
+    //
+    //     document.querySelector("#leftside-navigation .sub-menu > a").addEventListener("click", toggleSidebar);
+    //
+    //     document.querySelectorAll('.sidebar-css .nav-link').forEach(item => {
+    //         const href = item.getAttribute('href');
+    //         if ((this.route.route.includes(href) && href !== '#/') || (this.route.route === '#/' && href === '#/')) {
+    //             item.classList.add('active');
+    //             item.classList.remove('link-body-emphasis');
+    //             if (item.classList.contains('sub-menu-hidden-element')) {
+    //                 this.labelForChange.firstElementChild.innerText = item.firstElementChild.textContent;
+    //                 this.labelForChange.classList.add('active');
+    //                 this.labelForChange.classList.remove('link-body-emphasis');
+    //             }
+    //         }
+    //         if (this.route.route === '#/incomes-create' || this.route.route === '#/expenses-create') {
+    //             this.labelForChange.firstElementChild.innerText = 'Создание';
+    //             this.labelForChange.classList.add('active');
+    //             this.labelForChange.classList.remove('link-body-emphasis');
+    //         }
+    //         if (this.route.route === '#/incomes-edit' || this.route.route === '#/expenses-edit') {
+    //             this.labelForChange.firstElementChild.innerText = 'Редактирование';
+    //             this.labelForChange.classList.add('active');
+    //             this.labelForChange.classList.remove('link-body-emphasis');
+    //         }
+    //     });
+    // };
+
     activateSideBar() {
         const that = this;
 
         function toggleSidebar(e) {
-            $("#leftside-navigation ul ul").slideUp();
-            $(this).next().is(":visible") || $(this).next().slideDown();
-            $("i.nav-link-item-icon").toggleClass("fa-chevron-right fa-chevron-down");
+            const subMenus = document.querySelectorAll("#leftside-navigation ul ul");
+            subMenus.forEach(menu => {
+                menu.style.display = 'none';
+            });
+
+            const nextElement = this.nextElementSibling;
+            if (nextElement && nextElement.style.display !== 'block') {
+                // nextElement.style.display = 'block';
+                nextElement.classList.toggle("d-block");
+                nextElement.classList.toggle("d-none");
+            }
+
+            const navIcons = document.querySelectorAll("i.nav-link-item-icon");
+            navIcons.forEach(icon => {
+                icon.classList.toggle("fa-chevron-right");
+                icon.classList.toggle("fa-chevron-down");
+            });
+
             e.stopPropagation();
         }
 
-        document.querySelector("#leftside-navigation .sub-menu > a").addEventListener("click", toggleSidebar);
+        const subMenuLinks = document.querySelectorAll("#leftside-navigation .sub-menu > a");
+        subMenuLinks.forEach(link => {
+            link.addEventListener("click", toggleSidebar);
+        });
 
         document.querySelectorAll('.sidebar-css .nav-link').forEach(item => {
             const href = item.getAttribute('href');

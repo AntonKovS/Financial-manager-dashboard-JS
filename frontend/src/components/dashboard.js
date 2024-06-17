@@ -12,13 +12,25 @@ export class Dashboard {
 
         // this.getCategoriesIncome().then(this.getCategoriesExpense()).then(this.showGraphsDefault()).then(this.buttonsListener(this.buttonFilter));
 
-        this.getCategoriesIncome().then();
-        this.getCategoriesExpense().then();
+        // this.getCategoriesIncome().then();
+        // this.getCategoriesExpense().then();
+        // this.showGraphsDefault().then();
+        // this.buttonsListener(this.buttonFilter);
 
-        this.showGraphsDefault().then();
-
-        this.buttonsListener(this.buttonFilter);
+        this.init();
     }
+
+    async init() {
+        try {
+            await this.getCategoriesIncome();
+            await this.getCategoriesExpense();
+            await this.showGraphsDefault();
+            this.buttonsListener(this.buttonFilter);
+        } catch (error) {
+            console.error(error.message);
+        }
+
+    };
 
     async getCategoriesIncome() {
         try {
